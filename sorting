@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+class MergeSort {
+    public static void mergS(int[] A){
+        divide(A, 0, A.length - 1);
+    }
+    public static void divide(int[] A, int s, int e) {
+        if (s >= e) {
+            return;
+        }
+        int mid = s + (e - s) / 2;
+        divide(A, s, mid);
+        divide(A, mid + 1, e);
+        conquer(A, s, e, mid);
+    }
+    public static void conquer(int[] arr, int s, int e, int mid) {
+        int[] merge = new int[e - s + 1];
+        int i1 = s;
+        int i2 = mid + 1;
+        int x = 0;
+        while (i1 <= mid && i2 <= e) {
+            if (arr[i1] <= arr[i2]) {
+                merge[x++] = arr[i1++];
+            } else {
+                merge[x++] = arr[i2++];
+            }
+        }
+
+        while (i1 <= mid) {
+            merge[x++] = arr[i1++];
+        }
+        while (i2 <= e) {
+            merge[x++] = arr[i2++];
+        }
+        for (int i = 0, j = s; i < merge.length; i++, j++) {
+            arr[j] = merge[i];
+        }
+    }
+}
+class Test11 {
+    public static void main(String[] args) {
+        int[] A = {6, 2, 4, 9, 4, 7, 1};
+        MergeSort.mergS(A);
+        System.out.println(Arrays.toString(A));
+    }
+}
+
