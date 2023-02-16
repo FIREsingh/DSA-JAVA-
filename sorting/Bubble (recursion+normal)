@@ -1,0 +1,45 @@
+import java.util.Arrays;
+
+class Students{
+
+//....................normal...........................
+   /* public static int[] bubble(int[] A){
+        for(int i = 0; i<A.length; i++){
+            for(int j = 1; j<A.length-1; j++){
+                if(A[j-1]>A[j]){
+                    int temp = A[j-1];
+                    A[j-1] = A[j];
+                    A[j] = temp;
+                }
+            }
+        }
+        return A;
+    }*/
+    
+//....................recursion...........................   
+
+    public static void bubble(int[] arr){
+        helper(arr , arr.length-1,0);
+    }
+    static void helper(int []arr , int row ,int col){
+
+        if(row==0){
+            return;
+        }
+        if(col<row){
+            if(arr[col]>arr[col+1]){
+                int temp=arr[col];
+                arr[col]=arr[col+1];
+                arr[col+1]=temp;
+            }
+            helper(arr,row,col+1);
+        }else{
+            helper(arr,row-1, 0);
+        }
+    }
+    public static void main(String[] args) {
+        int[] A = {4,3,9,7,5};
+        bubble(A);
+        System.out.println(Arrays.toString(A));
+    }
+}
