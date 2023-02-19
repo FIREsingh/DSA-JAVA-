@@ -1,0 +1,30 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+ //base condition.       
+        if(head == null || head.next == null){
+            return head;
+        }
+
+//check is k pair exist or not.
+        ListNode pre = null, cur = head, curNext = head;       
+        for(int i = 0; i < k-1 ; i++){
+            curNext = curNext.next;
+            if(curNext == null){
+                return head;
+            }
+        }
+
+ //reverse       
+        for(int i = 0; i < k; i++){
+            curNext = cur.next;
+
+            cur.next = pre;
+            pre = cur;
+            cur = curNext;
+        }
+        
+//connection
+        head.next = reverseKGroup(cur, k);
+        return pre;
+    }
+}
