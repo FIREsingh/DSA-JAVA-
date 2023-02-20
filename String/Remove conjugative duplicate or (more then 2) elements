@@ -1,0 +1,23 @@
+class Test {
+    public static String myFinalReplace(String s){
+        return myReplace(s,1,"");
+    }
+    public static String myReplace(String s,int index, String str) {
+        if (index == s.length()) {
+            return str;
+        }
+        if (index == 1){
+            return myReplace(s, index + 1 , str+s.charAt(0));
+        }
+        if ( s.charAt(index-1) == s.charAt(index)) {
+            return myReplace(s, index + 1 , str);
+        }
+            return myReplace(s, index + 1, str + s.charAt(index));
+    }
+}
+    class BT {
+        public static void main(String[] args) {
+            System.out.println(Test.myFinalReplace("aabbbbbvdbbbbbbooo"));
+        }
+    }
+
