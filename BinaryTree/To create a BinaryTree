@@ -1,0 +1,39 @@
+import java.util.Scanner;
+    class BinaryTree {
+        class Node {
+            int value;
+            Node left, right;
+
+            Node(int value) {
+                this.value = value;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        Node createTree() {
+            System.out.print("Enter the data :");
+            Scanner sc = new Scanner(System.in);
+            int data = sc.nextInt();
+
+            if (data == -1) {
+                return null;
+            }
+            Node newNode = new Node(data);
+
+            System.out.println("Enter data left of " + data);
+            newNode.left = createTree();
+
+            System.out.println("Enter data right of " + data);
+            newNode.right = createTree();
+
+            return newNode;
+        }
+    }
+    class BT{
+        public static void main(String[] args) {
+            BinaryTree bt = new BinaryTree();
+            System.out.println(bt.createTree().value);
+        }
+    }
+    
