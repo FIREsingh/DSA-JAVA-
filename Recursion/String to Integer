@@ -1,0 +1,13 @@
+public class solution {
+
+    public static int convertStringToInt(String input) {
+        return helper(input, 0, 0, 0);
+    }
+
+    public static int helper(String input, int index, int number, int i) {
+        if (index == input.length()) {
+            return number;
+        }
+        return helper(input, index + 1,(input.charAt(input.length() - 1 - index) - '0') *(int) Math.pow(10, i) + number,i+1);
+    }
+}
