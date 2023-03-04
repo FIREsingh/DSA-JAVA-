@@ -1,0 +1,28 @@
+//Given two string s and t, write a function to check if s contains all characters of t (in the same order as they are in string t).
+//Return true or false.
+//Do it recursively.
+//E.g. : s = “abchjsgsuohhdhyrikkknddg” contains all characters of t=”coding” in the same order. So function will return true.
+
+public class Solution {
+public static boolean checkSequence(String s, String t){
+        return checkSequenceHelper(s,t,0,0);
+    }
+
+    public static boolean checkSequenceHelper(String s, String t,int i,int j) {
+
+        if(j==t.length()){
+            return true;
+        }
+
+        if(i==s.length()){
+            return false;
+        }
+
+       if(s.charAt(i)==t.charAt(j)){
+        return checkSequenceHelper(s,t,i+1,j+1);
+       }
+       else{
+           return checkSequenceHelper(s,t,i+1,j);
+       }
+    }
+}
