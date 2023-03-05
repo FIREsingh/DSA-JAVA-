@@ -1,0 +1,32 @@
+//LeetCode-15
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        Set <List<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
+        
+        if(nums.length < 3){
+            return new ArrayList<>(set);
+        }
+
+        for(int first = 0; first < nums.length-2; first++){
+            int mid = first+1;
+            int last = nums.length-1;
+
+            while(mid < last){
+                int sum = nums[first] + nums[mid] + nums[last];
+
+                if(sum == 0){
+                    set.add(List.of(nums[first], nums[mid] , nums[last]));
+                }
+                if(sum > 0){
+                    last--;
+                }else{
+                    mid++;
+                }
+            }
+        }
+        return new ArrayList<>(set);
+    }
+}
