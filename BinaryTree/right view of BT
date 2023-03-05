@@ -1,0 +1,23 @@
+//LeetCode-199
+
+class Solution {
+    int maxHight = 0;
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        return helper(root,list,0);
+    }
+
+     public List<Integer> helper(TreeNode root, List<Integer> list, int lvl){   
+        if(root == null){
+            return list;
+        }
+        if(lvl >=  maxHight){
+            list.add(root.val);
+            maxHight++;
+        }
+        helper(root.right,list,lvl+1);
+        helper(root.left,list,lvl+1);
+        return list;
+    }
+}
