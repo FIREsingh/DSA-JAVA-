@@ -1,0 +1,15 @@
+class Solution {
+    Long maxTripletProduct(Long arr[], int n){
+        Arrays.sort(arr);
+        long ans = 0;
+        if(arr[0] >= 0 || arr[arr.length-1] < 0){
+            return arr[arr.length-1]*arr[arr.length-2]*arr[arr.length-3];
+        }else{
+            long sum1 = arr[arr.length-1]*arr[arr.length-2]*arr[arr.length-3];
+            long sum3 = arr[0]*arr[1]*arr[arr.length-1];
+            
+            ans = Math.max(sum1,sum3);
+    }
+    return ans;
+    }
+}
