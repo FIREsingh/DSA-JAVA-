@@ -1,0 +1,23 @@
+class Solution {
+    public void check(TreeNode root, ArrayList<Integer> list){
+        if(root == null){
+            return ;
+        }
+            check(root.left,list);
+            list.add(root.val);
+            check(root.right,list); 
+        }
+
+    public boolean isValidBST(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        check(root,list);
+        int i = 1;
+        while(i < list.size()){
+            if(list.get(i-1) >= list.get(i)){
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+}
