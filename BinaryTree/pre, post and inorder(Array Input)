@@ -1,0 +1,50 @@
+import java.util.*;
+class Test2 {
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+        TreeNode(int val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    static class BinaryTree {
+        static int i = -1;
+        public static TreeNode buildTree(int[] A) {
+            i++;
+            if (A[i] == -1) {
+                return null;
+            }
+            TreeNode root = new TreeNode(A[i]);
+            root.left = buildTree(A);
+            root.right = buildTree(A);
+            return root;
+        }
+    }
+    static TreeNode root;
+    static void printLevelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode tempNode = queue.poll();
+            System.out.print(tempNode.val + " ");
+            /*Enqueue left child */
+            if (tempNode.left != null) {
+                queue.add(tempNode.left);
+            }
+            /*Enqueue right child */
+            if (tempNode.right != null) {
+                queue.add(tempNode.right);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] node = {4,9,5,-1,-1,1,-1,-1,0,-1,-1};
+        TreeNode root = BinaryTree.buildTree(node);
+        printLevelOrder(root);
+    }
+}
+
+
