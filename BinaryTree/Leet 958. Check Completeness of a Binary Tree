@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+          Queue <TreeNode> q = new LinkedList<>();
+            q.offer(root);
+
+          while(!q.isEmpty()){
+              TreeNode curNode = q.poll();
+
+              if(curNode != null){
+                q.offer(curNode.left);
+                q.offer(curNode.right);
+              }else{
+                  while(!q.isEmpty()){
+                      if(q.poll()!= null){
+                          return false;
+                      }
+                  }
+              }
+          }
+          return true;
+    }
+}
