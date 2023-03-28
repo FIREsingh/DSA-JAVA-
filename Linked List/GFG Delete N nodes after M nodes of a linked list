@@ -1,0 +1,26 @@
+class Solution{
+    static void linkdelete(Node head, int M, int N){
+		if(head == null || N == 0){
+            return;
+        }
+
+        Node start = head;
+        Node end = head.next;
+        int count = 0;
+        int count1 = 0;
+
+        while(count1 != N && end != null){
+            if(count < M-1){
+                start = start.next;
+                end = end.next;
+             }
+             if(count >= M-1 && count1 < N){
+                 end = end.next;
+                 count1++;
+             }
+             count++;
+        }
+        start.next = end;
+        linkdelete(end, M, N);
+    }
+}
