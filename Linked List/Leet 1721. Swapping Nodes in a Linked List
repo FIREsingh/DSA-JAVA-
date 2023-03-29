@@ -1,0 +1,46 @@
+class Solution {
+
+    public void swap(ListNode a, ListNode b){
+        int temp = a.val;
+        a.val = b.val;
+        b.val = temp;
+    }
+    
+    public int size(ListNode head){
+        ListNode temp1 = head;
+        int count = 0;
+
+        while(temp1 != null){
+            count++;
+            temp1 = temp1.next;
+        }
+        return count;
+    }
+
+    public ListNode swapNodes(ListNode head, int k){
+        if(head == null || k == 0){
+            return head;
+        }
+        ListNode temp = head;
+        ListNode a = head;
+        ListNode b = head;
+
+        int count1 = 0;
+        int count2 = 0;
+
+        int m = size(head) - k;
+        while(temp != null){
+            if(count1 < k-1){
+                a = a.next;
+                count1++;
+            }
+            if(count2 < m){
+                b = b.next;
+                count2++;
+            }
+            temp = temp.next;
+        }
+        swap(a,b);
+        return head;
+    }
+}
