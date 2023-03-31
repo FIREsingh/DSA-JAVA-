@@ -1,0 +1,33 @@
+class Solution {
+    public int minAddToMakeValid(String s) {
+        Stack <Character> stack = new Stack<>();
+        int count = 0;
+        for(char ch : s.toCharArray()){
+            if(ch == '(' || ch == '{' || ch == '['){
+                stack.push(ch);
+            }else{
+                if(ch == ')'){
+                    if(stack.isEmpty() || stack.pop() != '('){
+                        count++;
+                    }
+                }
+                if(ch == '}'){
+                    if(stack.isEmpty() || stack.pop() !='{'){
+                        count++;
+                    }
+                }
+                if(ch == ']'){
+                    if(stack.isEmpty() || stack.pop() != '['){
+                        count++;
+                    }
+                }
+            }
+        }
+        while(!stack.isEmpty()){
+            if(stack.pop() == '('|| stack.pop() == '{' || stack.pop() == '['){
+                count++;
+            }
+        }
+        return count;
+    }
+}
