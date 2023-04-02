@@ -1,0 +1,100 @@
+
+     public class QueueUsingArray {
+         int[] A;
+         int first;
+         int end;
+         int size;
+
+         public QueueUsingArray() {
+             A = new int[5];
+             first = -1;
+             end = -1;
+             size = 0;
+         }
+
+         public QueueUsingArray(int capacity) {
+             A = new int[capacity];
+             first = -1;
+             end = -1;
+             size = 0;
+         }
+
+         public int size() {
+             return size;
+         }
+
+         public boolean isEmpty() {
+             if(first == end){
+                 return true;
+             }
+             return false;
+         }
+
+         public int peek() {
+             if (first == -1) {
+                 System.out.println("empty");
+                 return -1;
+             }
+             return A[first];
+         }
+
+         public boolean offer(int element) {
+             end++;
+             first = 0;
+             if (end == A.length) {
+                 System.out.println("stack is full");
+                 return false;
+             }
+             A[end] = element;
+             size++;
+             return true;
+         }
+
+         public int poll() {
+             int removedElement = -1;
+             if (first == end) {
+                 System.out.println("stack is empty");
+             } else {
+                 removedElement = A[first];
+                 first++;
+             }
+             size--;
+             return removedElement;
+         }
+
+         public static void main(String[] args) {
+             QueueUsingArray queue = new QueueUsingArray();
+
+             System.out.println("......... offer.........");
+             System.out.println(queue.offer(5));
+             System.out.println(queue.offer(6));
+             System.out.println(queue.offer(7));
+             System.out.println(queue.offer(8));
+             System.out.println(queue.offer(9));
+
+             System.out.println("......stack overflow.......");
+             System.out.println(queue.offer(14));
+
+             System.out.println(".........size............");
+             System.out.println(queue.size());
+
+             System.out.println("..........peek............");
+             System.out.println(queue.peek());
+             System.out.println(queue.poll());
+             System.out.println(queue.peek());
+
+             System.out.println("..........poll...........");
+             System.out.println(queue.poll());
+             System.out.println(queue.poll());
+             System.out.println(queue.poll());
+             System.out.println(queue.poll());
+
+             System.out.println("......stack is empty......");
+             System.out.println(queue.poll());
+
+             System.out.println(".......isEmpty............");
+             System.out.println(queue.isEmpty());
+
+             System.out.println(".......................");
+         }
+     }
