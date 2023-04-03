@@ -1,21 +1,12 @@
 public class Queue {
-	
 	Node head;
 	Node tail;
 	int size;
-
-
 	public Queue() {
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
 	}
-	
-
-
-	/*----------------- Public Functions of Stack -----------------*/
-
-
 	public int getSize() { 
 		return size;
     }
@@ -24,8 +15,6 @@ public class Queue {
     public boolean isEmpty() { 
     	return head == null;
     }
-
-
     public void enqueue(int data) {
 		Node newNode = new Node(data);
 		size++;
@@ -37,8 +26,6 @@ public class Queue {
 			tail = newNode;
 		}
     }
-
-
     public int dequeue() {
     	if(head == null){
 			return -1;
@@ -48,8 +35,6 @@ public class Queue {
 			size--;
 		return temp;
     }
-
-
     public int front() {
     	if(head == null){
 			return -1;
