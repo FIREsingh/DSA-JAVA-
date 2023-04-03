@@ -1,0 +1,25 @@
+class GfG {
+        public Queue<Integer> modifyQueue(Queue<Integer> q, int k) {
+            int count = 0;
+            helper(q,k,0);
+            while(count < q.size() - k){
+                int x = q.peek();
+                q.poll();
+                q.offer(x);
+                count++;
+            }
+            return q;
+    }
+    public Queue<Integer> helper(Queue<Integer> q, int k,int count){
+        if(q.isEmpty()){
+            return q;
+        }
+        if(count < k){
+            int x = q.peek();
+            q.poll();
+            helper(q,k,count+1);
+            q.offer(x);
+            }
+        return q;
+    }
+}
