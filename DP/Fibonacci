@@ -1,0 +1,16 @@
+class Dp {
+    public static void fib(int n) {
+        int pre2 = 0;
+        int pre = 1;
+
+        for (int i = 3; i <= n; i++) {
+            int cur = pre2 + pre;
+            pre2 = pre;
+            pre = cur;
+        }
+        System.out.println(pre);
+    }
+    public static void main(String[] args){
+        fib(7);
+    }
+}
