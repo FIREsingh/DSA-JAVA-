@@ -1,0 +1,18 @@
+class StairCase {
+    public static void fib(int n) {
+        int pre2 = 1;
+        int pre1 = 2;
+        int pre = 4;
+
+        for (int i = 4; i <= n; i++) {
+            int cur = pre2 + pre1 + pre;
+            pre2 = pre1;
+            pre1 = pre;
+            pre = cur;
+        }
+        System.out.println(pre);
+    }
+    public static void main(String[] args){
+        fib(6);
+    }
+}
