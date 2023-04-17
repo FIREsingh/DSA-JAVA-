@@ -1,0 +1,18 @@
+class Solution{
+    public static void printPath(String s, int col, int row) {
+        if (col == 1 && row == 1) {
+            System.out.println(s);
+            return;
+        }
+        if (row > 0) {
+            printPath(s + 'U', col, row - 1);
+        }
+        if (col > 0) {
+            printPath(s + 'L', col - 1, row);
+        }
+    }
+
+    public static void main(String[] args) {
+        printPath("",3,3);
+    }
+}
