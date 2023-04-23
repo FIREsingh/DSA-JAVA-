@@ -1,0 +1,38 @@
+import java.util.*;
+class Solution {
+    public int minFallingPathSum(int[][] matrix) {
+
+        int min = Integer.MAX_VALUE;
+
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        int[][] dp = new int[row][col];
+        for(int[] x : dp){
+            Arrays.fill(x,-1);
+        }
+        for(int j = 0 ; j < col; j++){
+            int temp = helper(matrix,row-1,j,dp);
+            min = Math.min(min,temp);
+        }
+        return min;
+    }
+
+
+    public int helper(int[][] matrix, int row, int col, int[][] dp){
+        if(row < 0 || col < 0 || col >= matrix[0].length ){
+            return (int)Math.pow(10,9);
+        }
+        if(row == 0){
+            return matrix[row][col];
+        }
+        if(dp[row][col] != -1){
+            return dp[row][col];
+        }
+        int down = matrix[row][col]+ helper(matrix,row-1,col-1,dp);
+        int left = matrix[row][col] + helper(matrix,row-1,col,dp);
+        int right = matrix[row][col] + helper(matrix,row-1,col+1,dp);
+
+        return dp[row][col] = Math.min(down,Math.min(left,right));
+    }
+}
