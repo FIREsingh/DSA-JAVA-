@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Solution {
+	public static int formula(int n){
+		return (n * (n+1))/2;
+	}
+	public static int PairSum(int[] input, int size) {
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+		for(int i = 0; i < input.length; i++){
+			if(map.containsKey(input[i])){
+				map.put(input[i], map.get(input[i])+1);
+			}else{
+				map.put(input[i], 1);
+			}
+		}
+		
+		int count = 0;
+		Iterator<Integer> iterator = map.keySet().iterator();
+		
+		while (iterator.hasNext()) {
+			int key = iterator.next();
+			
+			if (key == 0) {
+				count = formula(map.get(key)-1);
+				iterator.remove();
+			} else if (map.containsKey(-key)) {
+				count += map.get(key) * map.get(-key);
+				iterator.remove();
+			}
+		}
+		
+		return count;
+	}
+}
