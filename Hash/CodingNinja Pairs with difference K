@@ -22,13 +22,9 @@ public class Solution {
 				count += (n*(n+1))/2;
 			}
 			
-			else if (key >0 && map.containsKey(key - k)) {
+			else if (map.containsKey(key - k)) {
 				count += map.get(key) * map.get(key - k);
 			}
-			else if (key < 0 && map.containsKey(key + k)) {
-				count += map.get(key) * map.get(key + k);
-			}
-
 		}
 		return count;
 	}
