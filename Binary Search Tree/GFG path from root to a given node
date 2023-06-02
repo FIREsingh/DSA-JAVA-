@@ -1,0 +1,31 @@
+public class Solution {
+	 static ArrayList<Integer> path = new ArrayList<Integer>();
+
+	public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int data){
+		f(root,data);
+		return path;
+	}
+	
+	public static boolean f(BinaryTreeNode<Integer> root, int data){ 
+		if(root == null){
+			return false;
+		}
+		if(root.data == data){
+			path.add(root.data);
+			return true;
+		}
+		if(root.data < data){
+			if(f(root.right,data)){
+				path.add(root.data);
+				return true;
+			}
+		}
+		if(root.data > data){
+			if(f(root.left,data)){
+				path.add(root.data);
+				return true;
+			}
+		}
+		return false;
+	}
+}
