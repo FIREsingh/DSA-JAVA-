@@ -1,0 +1,24 @@
+class Solution {
+    List<String> list = new ArrayList<>();
+    String str = "";
+
+    public List<String> binaryTreePaths(TreeNode root) {
+        f(root,list,str);
+        return list;
+    }
+
+    public void f(TreeNode root,List<String> list,String str){
+        if(root == null){
+            return;
+        }
+        if(root.left == null && root.right == null){
+            str = str + root.val;
+            list.add(str);
+            return;
+        }
+        str = str + root.val + "->";
+
+        f(root.left,list,str);
+        f(root.right,list,str);
+    }
+}
