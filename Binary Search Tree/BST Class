@@ -1,0 +1,108 @@
+public class BinarySearchTree {
+
+	BinaryTreeNode<Integer> root;
+
+	public void insert(int data) {
+		root = f(root,data);
+	}
+	public BinaryTreeNode<Integer> f(BinaryTreeNode<Integer> root, int data) {
+		if(root == null){
+			BinaryTreeNode<Integer> newRoot =  new BinaryTreeNode<Integer>(data);
+			return newRoot;
+		}
+		if(root.data < data){
+			root.right = f(root.right,data);
+		}
+		else{
+			root.left = f(root.left,data);
+		}
+		return root;
+	}
+	
+	public void remove(int data) {
+		f3(root,data);
+		}
+		public BinaryTreeNode<Integer> f3(BinaryTreeNode<Integer> root, int data){
+			if(root == null){
+				return null;
+			}
+			if(root.data < data){
+				root.right = f3(root.right, data);
+			}
+			else if(root.data > data){
+				root.left = f3(root.left, data);
+			}
+			else{
+				if(root.left == null){
+					return root.right;
+				}
+				else if(root.left == null){
+					return root.left;
+				}
+				else if(root.left != null && root.right != null){
+					int max = maxRoot(root.left).data;
+					root.data = max;
+					root.left = f3(root.left, max);
+				}else{
+					return null;
+				}
+			}
+		return root;
+	}
+	BinaryTreeNode<Integer> maxE = new BinaryTreeNode<Integer>(Integer.MIN_VALUE);
+	public BinaryTreeNode<Integer> maxRoot(BinaryTreeNode<Integer> root){
+		if(root == null){
+			return null;
+		}
+		if(root.data > maxE.data){
+			maxE = root;
+		}
+		maxRoot(root.left);
+		maxRoot(root.right);
+
+		return maxE;
+	}
+	
+	public void printTree() {
+		f2(root);
+	}
+	public void f2(BinaryTreeNode<Integer> root){
+		if(root == null){
+			return;
+		}
+		System.out.print(root.data +":");
+		if(root.left != null){
+			System.out.print( "L:"+ root.left.data +",");
+		}
+		if(root.right != null){
+			System.out.print( "R:"+root.right.data);
+		}
+		System.out.println();
+
+		f2(root.left);
+		f2(root.right);
+	}
+	
+	public boolean search(int data) {
+		return f1(root, data);
+	}
+	public boolean f1(BinaryTreeNode<Integer> root, int data){
+		if(root == null){
+			return false;
+		}
+		if(root.data == data){
+			return true;
+		}
+		if(root.data < data){
+			if(f1(root.right, data)){
+				return true;
+			}
+		}
+		if(root.data > data){
+			if(f1(root.left, data)){
+				return true;
+			}
+		}
+		return false;
+	}
+}
