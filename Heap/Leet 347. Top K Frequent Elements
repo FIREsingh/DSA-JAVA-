@@ -1,0 +1,41 @@
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+
+        //store integer and its frequency in heap.
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int x : nums){
+            if(map.containsKey(x)){
+                map.put(x,map.get(x)+1);
+            }else{
+                map.put(x,1);
+            }
+        }
+        //PriorityQueue WRT frequency.
+        class MyNumber implements Comparable<MyNumber>{
+            int freq;
+            int num;
+            MyNumber(int num, int freq){
+                this.num = num;
+                this.freq = freq;
+            }
+            @Override
+            public int compareTo(MyNumber mn){
+                return this.freq - mn.freq;
+            }
+        }
+
+        //store elements and frequency in PriorityQueue.
+        PriorityQueue<MyNumber> pq = new PriorityQueue<>(Comparator.reverseOrder());
+        for(int x: map.keySet()){
+            pq.offer(new MyNumber(x,map.get(x)));
+        }
+
+        //Store Top K Elements in array.
+        int[] arr = new int[k];
+
+        for(int i = 0; i<k; i++){
+            arr[i] = pq.poll().num; 
+        }
+        return arr;
+    }
+}
