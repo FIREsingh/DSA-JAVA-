@@ -1,0 +1,48 @@
+class Solution {
+    int totalSum = 0;
+    public int maxE(int[] nums) {
+            int MaxSum = Integer.MIN_VALUE;
+            int sum = 0;
+            for(int i  = 0; i < nums.length; i++){
+                totalSum += nums[i];
+                sum += nums[i];
+                MaxSum = Math.max(sum,MaxSum);
+                if(sum < 0){
+                    sum = 0;
+                }
+            }
+            return MaxSum;
+        }
+
+        public int minE(int[] nums) {
+            int MinSum = Integer.MAX_VALUE;
+            int sum2 = 0;
+
+            for(int i = 0; i < nums.length; i++){
+                
+                sum2 += nums[i];
+                MinSum = Math.min(sum2,MinSum);
+                if(sum2 > 0){
+                    sum2 = 0;
+                }
+            }
+            return MinSum;
+        }
+
+    public int maxSubarraySumCircular(int[] nums) {
+        int negativeCount = 0;
+        int ans1 = Integer.MIN_VALUE;
+
+        for (int i = 0; i < nums.length; i++){
+            if(nums[i] < 0){
+                negativeCount++;
+            }
+            ans1 = Math.max(ans1,nums[i]);
+        }
+        if(negativeCount == nums.length){
+            return ans1;
+        }else{
+            return Math.max( maxE(nums), totalSum- minE(nums) );
+        }
+    }
+}
