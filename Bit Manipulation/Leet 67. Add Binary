@@ -1,0 +1,16 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        int carry = 0, ind1 = a.length()-1, ind2 = b.length()-1, sum = 0;
+        String str = "";
+        while(ind1 >= 0 || ind2 >= 0){
+            sum = carry;
+            if(ind1 >= 0) sum += a.charAt(ind1--) - '0';
+            if(ind2 >= 0) sum += b.charAt(ind2--) - '0';
+            
+            carry = sum > 1 ? 1 : 0;
+            str = String.valueOf(sum%2)+str;  
+        }
+        if(carry != 0) str = String.valueOf(carry)+str;
+        return str;
+    }
+}
