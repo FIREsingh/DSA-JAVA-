@@ -1,0 +1,46 @@
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n){
+        //case 1 (if LinkedList is null)
+        if(head == null){
+            return head;
+        }
+        
+        //Find out Size of LinkedList.
+        ListNode temp = head;
+        int size = 0;
+       while(temp != null){
+           size++;
+           temp = temp.next;
+       }
+       int ind = size - n;
+
+        //case 2 (if need to remove first element)
+       if(n == size){
+           head = head.next;
+           return head;
+       }
+
+       //case 3 (if need to remove last element)
+        temp = head;
+        if(n == 1){
+            while(temp.next.next != null){
+                temp = temp.next;
+           }
+           temp.next = null;
+           return head;
+       }
+       //case 4 (if need to remove any element apart of 1st and last)
+        if(size >= 3){
+            int i = 1;
+            temp = head;
+            ListNode nextLink = head.next.next;
+            while(i < ind){
+                temp = temp.next;
+                nextLink = nextLink.next ;
+                i++;
+            }
+            temp.next = nextLink;   
+        }
+        return head;
+    }
+}
