@@ -1,0 +1,35 @@
+class Compute {
+
+    public long[] printFirstNegativeInteger(long A[], int N, int K) {
+        Queue<Long> q = new LinkedList<>();
+        List<Long> list = new ArrayList<>();
+
+        int i = 0;
+        for (int j = 0; j < N; j++) {
+
+            if (A[j] < 0) {
+                q.offer(A[j]);
+            }
+
+            if (j - i + 1 == K) {
+                if (q.isEmpty()) {
+                    list.add(0L);
+                } else {
+                    list.add(q.peek());
+                    if (q.peek() == A[i]) {
+                        q.poll();
+                    }
+                }
+                i++;
+            }
+        }
+
+        // Convert List<Long> to long[]
+        long[] result = new long[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            result[k] = list.get(k);
+        }
+
+        return result;
+    }
+}
