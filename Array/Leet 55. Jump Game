@@ -1,0 +1,10 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int i = 0, boundry = 0;
+        while( i < nums.length){
+            if(i > boundry) return false;
+            boundry = Math.max(boundry, i+nums[i++]);
+        }
+        return true;
+    }
+}
