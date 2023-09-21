@@ -20,6 +20,7 @@ class Solution {
                 } 
             }
         }
+//find minimum in the top row
        int minPathSum = dp[0][0];
         for (int j = 1; j < m; j++) {
             minPathSum = Math.min(minPathSum, dp[0][j]);
