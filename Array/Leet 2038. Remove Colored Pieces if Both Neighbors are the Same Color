@@ -1,0 +1,38 @@
+class Solution {
+    public boolean winnerOfGame(String colors) {
+        int countA = 0, gCountA = 0;
+        int countB = 0,  gCountB = 0;
+        int n = colors.length();
+        int i = 0;
+        while (i < n){
+            if(colors.charAt(i) == 'A'){
+                while(i < n && colors.charAt(i) == 'A'){
+                    countA++;
+                    i++;
+                }
+                if(countA >= 3){
+                    gCountA = gCountA + (countA-2);
+                }
+                countA = 0;
+            }else{
+                i++;
+            }
+        }
+        i = 0;
+        while (i < n){
+            if(colors.charAt(i) == 'B'){
+                while(i < n && colors.charAt(i) == 'B' ){
+                    countB++;
+                    i++;
+                }
+                if(countB >= 3){
+                    gCountB = gCountB + (countB-2);
+                }
+                countB = 0;
+            }else{
+                i++;
+            }
+        }
+        return (gCountA > gCountB);
+    }
+}
