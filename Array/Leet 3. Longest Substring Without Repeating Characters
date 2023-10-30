@@ -1,0 +1,22 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Queue <Character> q = new LinkedList<>();
+        int i = 0, n = s.length(),gCount = 0, count = 0;
+        while(i < n){
+            if(!q.contains(s.charAt(i))){
+                q.offer(s.charAt(i));
+                count++;
+                gCount = Math.max(count,gCount);
+                i++;
+            }else{
+                while(q.peek() != s.charAt(i)){
+                    q.remove(q.peek());
+                    count -= 1;
+                }
+                q.remove(q.peek());
+                count -= 1;
+            }
+        }
+        return gCount;
+    }
+}
