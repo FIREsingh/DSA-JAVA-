@@ -1,0 +1,19 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int gMax = 1,max = 1;
+
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp,1);
+
+        for(int ind = 0; ind < nums.length; ind++){
+            for(int pre = 0; pre < ind; pre++){
+                if(nums[pre] < nums[ind]){
+                    dp[ind] = Math.max(dp[ind], 1+dp[pre]);
+                    max = Math.max(dp[ind], max);
+                }
+            }
+            gMax = Math.max(gMax,max);
+        }
+        return gMax;
+    }
+}
