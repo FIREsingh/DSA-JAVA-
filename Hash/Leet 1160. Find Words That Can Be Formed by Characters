@@ -1,0 +1,34 @@
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int sum = 0;
+        Map < Character,Integer> map = new HashMap<>();
+        for(int i = 0; i < chars.length(); i++){
+            if(map.containsKey(chars.charAt(i))){
+                map.put(chars.charAt(i),map.get(chars.charAt(i))+1);
+            }else{
+                map.put(chars.charAt(i),1);
+            }
+        }
+
+        Map < Character,Integer> dummyMap;
+        for(int i = 0; i < words.length; i++){
+            dummyMap = new HashMap<>(map);
+            String check = words[i];
+            for(int j = 0; j <check.length(); j++){
+                if(dummyMap.containsKey(check.charAt(j))){
+                    dummyMap.put(check.charAt(j),dummyMap.get(check.charAt(j))-1);
+                }else{
+                    break;
+                }
+                if(dummyMap.get(check.charAt(j)) == 0 ){
+                    dummyMap.remove(check.charAt(j));
+                }
+                if(j == check.length()-1){
+                    sum = sum + check.length();
+                }
+            }
+        }
+
+        return sum;
+    }
+}
