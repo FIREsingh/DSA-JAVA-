@@ -1,0 +1,15 @@
+class Solution {
+    public String largestGoodInteger(String num) {
+        int ans = Integer.MIN_VALUE;
+        for(int i = 2; i<num.length(); i++){
+            if(num.charAt(i-2)== num.charAt(i-1) && num.charAt(i-1)== num.charAt(i)){
+                ans = Math.max(ans,num.charAt(i)-'0');
+            }
+        }
+        if(ans > Integer.MIN_VALUE){
+            String s = String.valueOf(ans);
+            return s+s+s;
+        }
+        return "";
+    }
+}
