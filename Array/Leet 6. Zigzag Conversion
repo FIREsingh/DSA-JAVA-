@@ -1,0 +1,35 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows == 1){
+            return s;
+        }
+        String str = "";
+
+        for(int i = 0; i < numRows; i++){
+            int id = i;
+            int buttom = 2*(numRows - 1 -i);
+            int top = 2*i;
+            Boolean isButtom = true;
+
+            while(id < s.length()){
+                str = str + s.charAt(id);
+
+                // base case
+                
+                if(i == 0){
+                    id += buttom;
+                }else if(i == numRows-1){
+                    id += top;
+                }else{
+                    if(isButtom){
+                        id += buttom;
+                    }else{
+                        id += top;
+                    }
+                    isButtom = !isButtom;
+                } 
+            }
+        }
+        return str;
+    }
+}
