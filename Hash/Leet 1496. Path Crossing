@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isPathCrossing(String path) {
+        Map <Integer, ArrayList <Integer>> map = new HashMap<>();
+        map.put(0, new ArrayList<Integer>(List.of(0))); 
+        
+        int x = 0, y = 0;
+        for(int i = 0; i < path.length(); i++){
+            if(path.charAt(i) == 'E') x++;
+            if(path.charAt(i) == 'W') x--;
+            if(path.charAt(i) == 'N') y++;
+            if(path.charAt(i) == 'S') y--;
+            
+            if(map.containsKey(x)){
+                if(map.get(x).contains(y)){
+                    return true;
+                }else{
+                    map.get(x).add(y);
+                }
+            }else{
+                map.put(x, new ArrayList<Integer>(List.of(y)));  
+            }
+        }
+        return false;
+    }
+}
