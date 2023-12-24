@@ -1,0 +1,26 @@
+class Solution {
+    public int minOperations(String s) {
+        char[] arr = s.toCharArray();
+
+        int countEvenOne = 0, countEvenZero = 0,countOddZero = 0,countOddOne=0 ;
+        
+        for(int i = 0; i < s.length(); i++){
+                if(i%2 == 0){
+                    if(arr[i] != '0'){
+                        countEvenOne++;
+                    } else{
+                        countEvenZero++;
+                    }  
+                }else{
+                    if(arr[i] != '1'){
+                        countOddZero++;
+                    } else{
+                        countOddOne++;
+                    }
+                }
+            }
+        int sum1 = countEvenOne + countOddZero;
+        int sum2 = countEvenZero + countOddOne;
+        return Math.min(sum1, sum2);
+    }
+}
